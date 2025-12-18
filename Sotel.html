@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sotel - National Telecommunications</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- 1. CSS Variables (Camtel Style Colors) --- */
+
+        :root {
+            --cam-blue: #0054a6;
+            /* Deep Blue */
+            --cam-yellow: #fcd500;
+            /* Bright Yellow */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --gray-bg: #f8f9fa;
+        }
+
+        /* --- 2. Reset & Base Styles --- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--gray-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- 3. Top Bar (Segment Navigation) --- */
+
+        .top-bar {
+            background-color: var(--cam-blue);
+            color: var(--text-light);
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: flex-end;
+            /* Align to right */
+            gap: 20px;
+        }
+
+        .top-bar a {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .top-bar a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* --- 4. Main Header & Navigation --- */
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--cam-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* A little yellow dot to mimic branding style */
+
+        .logo span {
+            color: var(--cam-yellow);
+            font-size: 3rem;
+            line-height: 0;
+            margin-left: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            color: var(--cam-blue);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        /* Yellow underline on hover */
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--cam-yellow);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .search-btn {
+            color: var(--cam-blue);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--cam-blue);
+            cursor: pointer;
+        }
+
+        /* --- 5. Hero Section (Banner) --- */
+
+        .hero {
+            background: linear-gradient(rgba(0, 84, 166, 0.8), rgba(0, 84, 166, 0.6)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        /* Yellow decorative curve at bottom of hero */
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: white;
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background-color: var(--cam-yellow);
+            color: var(--cam-blue);
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c200;
+            transform: scale(1.05);
+        }
+
+        /* --- 6. Quick Access / Services Grid --- */
+
+        .services-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            color: var(--cam-blue);
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--cam-yellow);
+            margin: 10px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, border 0.3s;
+            border-bottom: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--cam-yellow);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--cam-blue);
+        }
+
+        .service-card h3 {
+            color: var(--cam-blue);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- 7. "Blue Fap" Section (Promo) --- */
+
+        .promo-section {
+            background-color: var(--cam-blue);
+            color: white;
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+
+        .promo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .promo-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .promo-text span {
+            color: var(--cam-yellow);
+        }
+
+        /* --- 8. Footer --- */
+
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--cam-yellow);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* --- Mobile Responsiveness --- */
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .top-bar .container {
+                justify-content: center;
+            }
+
+            .promo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <div class="container header-top">
+            <div class="brand">
+                <img src="assets/images/logo.png" alt="Sotel logo">
+                <a href="Sotel.html" class="logo">Sotel Tchad</a>
+            </div>
+
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search products, services, news...">
+            </div>
+
+            <div class="header-actions">
+                <a class="pill-btn primary" href="#">💬 Live Chat</a>
+                <a class="pill-btn" href="#">⭐ Our Agencies</a>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" type="button">EN</button>
+                    <button class="lang-btn" type="button">FR</button>
+                </div>
+                <div class="hamburger" id="hamburger">☰</div>
+            </div>
+        </div>
+
+        <div class="container header-nav">
+            <ul class="nav-links" id="nav-links">
+                <li><a class="active" href="Sotel.html">Home</a></li>
+                <li><a href="mobile.html">Mobile</a></li>
+                <li><a href="internet.html">Internet</a></li>
+                <li><a href="clearchannel.html">Clear channel</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Connexion sans limites avec Sotel</h1>
+                <p>Découvrez la couverture fibre optique la plus étendue et la vitesse 4G+ à travers tout le pays.</p>
+                <a href="#" class="btn-primary">Découvrir les offres</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nos Solutions</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">📶</div>
+                    <h3>Salam Mobile</h3>
+                    <p>Unlimited data plans and affordable roaming packages.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🌐</div>
+                    <h3>Connectivité FTTX</h3>
+                    <p>Le Très Haut Débit de nouvelle génération offrant des vitesses Gigabit via la Fibre optique.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">☎️</div>
+                    <h3>Fixed Line</h3>
+                    <p>Crystal clear voice calls for your business needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🏢</div>
+                    <h3>Enterprise</h3>
+                    <p>Dedicated servers and cloud solutions for companies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="promo-section">
+        <div class="container promo-container">
+            <div class="promo-text">
+                <h2>Get the <span>Blue</span> Advantage</h2>
+                <p>Switch to Sotel today and get 3 months of free installation.</p>
+            </div>
+            <a href="#" class="btn-primary" style="background: white; color: var(--cam-blue);">Get Started</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Sotel</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Mobile Internet</a></li>
+                        <li><a href="#">Fiber to Home</a></li>
+                        <li><a href="#">Prepaid Plans</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Store Locator</a></li>
+                        <li><a href="#">Check Balance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Sotel Tchad. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+.mobile-hero {
+    background: linear-gradient(135deg, rgba(0, 84, 166, 0.85), rgba(0, 84, 166, 0.65)), url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.mobile-card {
+    background: #fff;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e6eaf0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mobile-card h2 {
+    color: var(--cam-blue);
+    border-bottom: 2px solid var(--cam-yellow);
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.data-table th,
+.data-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+    background-color: var(--cam-blue);
+    color: #fff;
+}
+
+.btn-buy {
+    background: var(--cam-yellow);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--cam-blue);
+    border-radius: 4px;
+    width: 100%;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-buy:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 60px 0 36px;
+    }
+
+    .page-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        width: 100%;
+    }
+
+    .hero-actions .btn-primary,
+    .hero-actions .btn-outline {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobile-card {
+        padding: 22px;
+        border-radius: 12px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .mobile-card h2 {
+        font-size: 1.3rem;
+    }
+}
